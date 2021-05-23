@@ -6,17 +6,17 @@ class expenses{
 public:
     string category;
     string date;
-    double amount;
+    double cost;
     int wallet_index;
 
-    expenses(string c, string d, double a, int w_i){
-        category = c;
+    expenses(string cat, string d, double c, int w_i){
+        category = cat;
         date = d;
-        amount = a;
+        cost = c;
         wallet_index = w_i;
     }
     void display(){
-        cout << "You spent " << amount << " in " << category << " on " << date << endl;
+        cout << "You spent " << cost << " in " << category << " on " << date << endl;
     }
     ~expenses(){}
 };
@@ -32,6 +32,5 @@ public:
         type = t;
         money = m;
     }
-    double remaining_money();
     ~wallet(){}
 };

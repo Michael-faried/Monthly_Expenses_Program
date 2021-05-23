@@ -28,19 +28,19 @@ int main()
 
         case 2:
             {
-                //daily_expenses();
+                daily_expenses(Wallet_Index);
                 break;
             }
 
         case 3:
             {
-                //view_expenses();
+                view_expenses();
                 break;
             }
 
         case 4:
             {
-                //view_money();
+                view_money();
                 break;
             }
 
