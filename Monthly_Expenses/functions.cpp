@@ -63,11 +63,12 @@ void daily_expenses(int wal_ind)
     cout << "Enter The Date: ";         string Date;        cin >> Date;
     cout << "Enter The Cost: ";         double Cost;        cin >> Cost;
     expenses e1(Category, Date, Cost, wal_ind);
-    ex.push_back(e1);
-    if(w[wal_ind].money -= e1.cost < 0)
-        cout << "There is No Enough Money Left";
-    else
+    if(w[wal_ind].money - e1.cost < 0)
+        cout << "There is No Enough Money Left\n";
+    else {
         w[wal_ind].money -= e1.cost;
+        ex.push_back(e1);
+    }
 }
 
 void view_expenses()
@@ -137,7 +138,7 @@ void view_money()
     int wallet_choice;
     cout << "Choose Between These Wallets\n";
     for(int i=0; i<w.size(); i++){
-        cout << "Wallet "<< i+1 << ": Name " << w[i].name << " of Type " << w[i].type<< " Contains " << w[i].money << endl;
+        cout << "Wallet "<< i+1 << ": Name " << w[i].name << " of Type " << w[i].type<< endl;
         cout << "-----------------------------------------------------------------------\n";
     }
     cout << "Your Choice: ";        cin >> wallet_choice;
