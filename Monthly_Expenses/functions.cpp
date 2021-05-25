@@ -62,11 +62,12 @@ void daily_expenses(int wal_ind)
     cout << "Enter The Category: ";         string Category;        cin >> Category;
     cout << "Enter The Date: ";         string Date;        cin >> Date;
     cout << "Enter The Cost: ";         double Cost;        cin >> Cost;
-    expenses e1(Category, Date, Cost, wal_ind);
-    if(w[wal_ind].money - e1.cost < 0)
+    wallet Wallet = w[wal_ind];
+    expenses e1(Category, Date, Cost, Wallet);
+    if(Wallet.money - e1.cost < 0)
         cout << "There is No Enough Money Left\n";
     else {
-        w[wal_ind].money -= e1.cost;
+        Wallet.money -= e1.cost;
         ex.push_back(e1);
     }
 }
@@ -88,38 +89,122 @@ void view_expenses()
         {
             case 1:
             {
-                for(int i=0; i<ex.size(); i++){
-                    ex[i].display();
+                if (ex.empty())
+                    cout << "No expenses to Display.\n";
+                else {
+                    for(int i=0; i<ex.size(); i++){
+                        ex[i].display();
+                    }
                 }
                 break;
             }
 
             case 2:
             {
-                //ToDo
+                string filter_date;
+                bool found = false;
+                cout << "Enter the Date you want to filter with(dd/mm/yy): ";
+                cin >> filter_date;
+                for (int i = 0; i < ex.size(); i++) {
+                    if (ex[i].date == filter_date)
+                    {
+                        ex[i].display();
+                        found = true;
+                    }
+                }
+                if (!found)
+                    cout << "No data has been found.\n";
                 break;
             }
 
             case 3:
             {
-                //ToDo
+                bool found = false;
+                string filter_category;
+                cout << "Enter the Category you want to filter with: ";
+                cin >> filter_category;
+                for (int i = 0; i < ex.size(); i++) {
+                    if (ex[i].category == filter_category)
+                    {
+                        ex[i].display();
+                        found = true;
+                    }
+                }
+                if (!found)
+                    cout << "No data has been found.\n";
                 break;
             }
 
             case 4:
             {
-                //ToDo
+                bool found;
+                double filter_amount;
+                cout << "Enter the amount you want to filter with: ";
+                cin >> filter_amount;
+                for (int i = 0; i < ex.size(); i++) {
+                    if (ex[i].cost == filter_amount)
+                    { 
+                        ex[i].display();
+                        found = true;
+                    }
+                }
+                if (!found)
+                    cout << "No data has been found.\n";
                 break;
             }
 
             case 5:
             {
-                //ToDo;
+                //ToDo
+
+
                 break;
             }
             case 6:
             {
-                //ToDo;
+                int wallet_choice;
+                bool found = false;
+                cout << "Do you want to filter with\n1.Wallet Name\n2.Wallet Type\n";
+                cout << "Choice: "; cin >> wallet_choice;
+
+                if (wallet_choice == 1)
+                {
+                    string wallet_name;
+
+                    cout << "Enter the Wallet Name: ";
+                    cin >> wallet_name;
+
+                    for (int i = 0; i < ex.size(); i++) {
+                        if (wallet_name == ex[i].Wallet.name)
+                        {
+                            ex[i].display();
+                            found = true;
+                        }
+                    }
+                    if (!found)
+                        cout << "No data has been found.\n";
+                    break;
+                }
+                else if (wallet_choice == 2)
+                {
+                    string wallet_type;
+
+                    cout << "Enter the Wallet Type: ";
+                    cin >> wallet_type;
+
+                    for (int i = 0; i < ex.size(); i++) {
+                        if (wallet_type == ex[i].Wallet.type)
+                        {
+                            ex[i].display();
+                            found = true;
+                        }
+                    }
+                    if (!found)
+                        cout << "No data has been found.\n";
+                    break;
+                }
+                else
+                    cout << "Invlaid Choice\n";
                 break;
             }
             case 7:
