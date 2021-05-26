@@ -133,6 +133,8 @@ void view_expenses()
     int exp_choice;
     while(true)
     {
+        cout << "------------------------------------------\n";
+        cout << "------------------------------------------\n";
         cout << "1. View All Expenses\n";
         cout << "2. Filter By Date\n";
         cout << "3. Filter By Category\n";
@@ -148,6 +150,7 @@ void view_expenses()
                 if (ex.empty())
                     cout << "No expenses to Display.\n";
                 else {
+                    cout << "------------------------------------------\n";
                     for(int i=0; i<ex.size(); i++){
                         ex[i].display();
                     }
@@ -163,6 +166,7 @@ void view_expenses()
                     cout << "No Data Has been Found.\n";
                 else
                 {
+                    cout << "------------------------------------------\n";
                     for (int i = 0; i < filtered_expenses.size(); i++)
                         filtered_expenses[i].display();
                 }
@@ -177,6 +181,7 @@ void view_expenses()
                     cout << "No Data Has been Found.\n";
                 else
                 {
+                    cout << "------------------------------------------\n";
                     for (int i = 0; i < filtered_expenses.size(); i++)
                         filtered_expenses[i].display();
                 }
@@ -191,6 +196,7 @@ void view_expenses()
                     cout << "No Data Has been Found.\n";
                 else
                 {
+                    cout << "------------------------------------------\n";
                     for (int i = 0; i < filtered_expenses.size(); i++)
                         filtered_expenses[i].display();
                 }
@@ -205,7 +211,8 @@ void view_expenses()
                 cout << "How many filter do you want to apply: "; cin >> filters; //geting the number of filters he wants to use
                 int* arr = new int[filters];                                    
 
-                cout << "Choose the filters:\n1.Date.\n2.Category.\n3.cost.\n4.wallet Name.\n5.wallet Type";
+                cout << "Choose the filters:\n1.Date.\n2.Category.\n3.cost.\n4.wallet Name.\n5.wallet Type.\n";
+                cout << "Your choices: ";
                 for (int i = 0; i < filters; i++)
                     cin >> arr[i];                                      //choosing the filters and putting it's number in dynamic array
 
@@ -240,6 +247,7 @@ void view_expenses()
                 }
                 else
                 {
+                    cout << "------------------------------------------\n";
                     for (int i = 0; i < filtered_expenses.size(); i++)
                         filtered_expenses[i].display();
                 }
@@ -262,6 +270,7 @@ void view_expenses()
                         cout << "No Data Has been Found.\n";
                     else
                     {
+                        cout << "------------------------------------------\n";
                         for (int i = 0; i < filtered_expenses.size(); i++)
                             filtered_expenses[i].display();
                     }
@@ -274,6 +283,7 @@ void view_expenses()
                         cout << "No Data Has been Found.\n";
                     else
                     {
+                        cout << "------------------------------------------\n";
                         for (int i = 0; i < filtered_expenses.size(); i++)
                             filtered_expenses[i].display();
                     }
