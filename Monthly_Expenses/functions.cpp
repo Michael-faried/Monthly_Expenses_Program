@@ -6,6 +6,62 @@ using namespace std;
 vector<wallet> w;
 vector<expenses> ex;
 
+vector <expenses> filterByDate(vector<expenses> ex) {
+    string filter_date;
+    vector <expenses> filtered_vector;
+    cout << "Enter the Date you want to filter with(dd/mm/yy): ";
+    cin >> filter_date;
+    for (int i = 0; i < ex.size(); i++) {
+        if (ex[i].date == filter_date)
+            filtered_vector.push_back(ex[i]);
+    }
+    return filtered_vector;
+}
+vector <expenses> filterByCategory(vector<expenses> ex) {
+    string filter_Category;
+    vector <expenses> filtered_vector;
+    cout << "Enter the Category you want to filter with: ";
+    cin >> filter_Category;
+    for (int i = 0; i < ex.size(); i++) {
+        if (ex[i].category == filter_Category)
+            filtered_vector.push_back(ex[i]);
+    }
+    return filtered_vector;
+}
+vector <expenses> filterByAmount(vector<expenses> ex) {
+    double filter_amount;
+    vector <expenses> filtered_vector;
+    cout << "Enter the amount you want to filter with: ";
+    cin >> filter_amount;
+    for (int i = 0; i < ex.size(); i++) {
+        if (ex[i].cost == filter_amount)
+            filtered_vector.push_back(ex[i]);
+    }
+    return filtered_vector;
+}
+vector <expenses> filterByWalletName(vector<expenses> ex) {
+    string wallet_Name;
+    vector <expenses> filtered_vector;
+    cout << "Enter the wallet name: ";
+    cin >> wallet_Name;
+    for (int i = 0; i < ex.size(); i++) {
+        if (ex[i].Wallet.name == wallet_Name)
+            filtered_vector.push_back(ex[i]);
+    }
+    return filtered_vector;
+}
+vector <expenses> filterByWalletType(vector<expenses> ex) {
+    string wallet_Type;
+    vector <expenses> filtered_vector;
+    cout << "Enter the wallet type: ";
+    cin >> wallet_Type;
+    for (int i = 0; i < ex.size(); i++) {
+        if (ex[i].Wallet.type == wallet_Type)
+            filtered_vector.push_back(ex[i]);
+    }
+    return filtered_vector;
+}
+
 int choose_wallet()
 {
     wallet w1("Default", "Cash", 1000);
@@ -253,58 +309,3 @@ void view_money()
 
 }
 
-vector <expenses> filterByDate(vector<expenses> ex) {
-    string filter_date;
-    vector <expenses> filtered_vector;
-    cout << "Enter the Date you want to filter with(dd/mm/yy): ";
-    cin >> filter_date;
-    for (int i = 0; i < ex.size(); i++) {
-        if (ex[i].date == filter_date)
-            filtered_vector.push_back(ex[i]);
-    }
-    return filtered_vector;
-}
-vector <expenses> filterByCategory(vector<expenses> ex) {
-    string filter_Category;
-    vector <expenses> filtered_vector;
-    cout << "Enter the Category you want to filter with: ";
-    cin >> filter_Category;
-    for (int i = 0; i < ex.size(); i++) {
-        if (ex[i].category == filter_Category)
-            filtered_vector.push_back(ex[i]);
-    }
-    return filtered_vector;
-}
-vector <expenses> filterByAmount(vector<expenses> ex) {
-    double filter_amount;
-    vector <expenses> filtered_vector;
-    cout << "Enter the amount you want to filter with: ";
-    cin >> filter_amount;
-    for (int i = 0; i < ex.size(); i++) {
-        if (ex[i].cost == filter_amount)
-            filtered_vector.push_back(ex[i]);
-    }
-    return filtered_vector;
-}
-vector <expenses> filterByWalletName(vector<expenses> ex) {
-    string wallet_Name;
-    vector <expenses> filtered_vector;
-    cout << "Enter the wallet name: ";
-    cin >> wallet_Name;
-    for (int i = 0; i < ex.size(); i++) {
-        if (ex[i].Wallet.name == wallet_Name)
-            filtered_vector.push_back(ex[i]);
-    }
-    return filtered_vector;
-}
-vector <expenses> filterByWalletType(vector<expenses> ex) {
-    string wallet_Type;
-    vector <expenses> filtered_vector;
-    cout << "Enter the wallet type: ";
-    cin >> wallet_Type;
-    for (int i = 0; i < ex.size(); i++) {
-        if (ex[i].Wallet.type == wallet_Type)
-            filtered_vector.push_back(ex[i]);
-    }
-    return filtered_vector;
-}

@@ -11,6 +11,8 @@ int main()
     int choice;
     while (true)
     {
+        cout << "------------------------------------------\n";
+        cout << "------------------------------------------\n";
         cout << "1. Enter Monthly Income\n";
         cout << "2. Enter Daily Expenses\n";
         cout << "3. View Your Expenses\n";
