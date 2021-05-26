@@ -1,1 +1,11 @@
-﻿  Monthly_Expenses.vcxproj -> D:\git\Monthly_Expenses_Program\Monthly_Expenses\x64\Debug\Monthly_Expenses.exe
+﻿  Monthly_Expenses.cpp
+D:\git\Monthly_Expenses_Program\Monthly_Expenses\functions.cpp(105,37): error C3861: 'filterByDate': identifier not found
+D:\git\Monthly_Expenses_Program\Monthly_Expenses\functions.cpp(119,37): error C3861: 'filterByCategory': identifier not found
+D:\git\Monthly_Expenses_Program\Monthly_Expenses\functions.cpp(133,37): error C3861: 'filterByAmount': identifier not found
+D:\git\Monthly_Expenses_Program\Monthly_Expenses\functions.cpp(162,45): error C3861: 'filterByDate': identifier not found
+D:\git\Monthly_Expenses_Program\Monthly_Expenses\functions.cpp(166,45): error C3861: 'filterByCategory': identifier not found
+D:\git\Monthly_Expenses_Program\Monthly_Expenses\functions.cpp(170,45): error C3861: 'filterByAmount': identifier not found
+D:\git\Monthly_Expenses_Program\Monthly_Expenses\functions.cpp(174,45): error C3861: 'filterByWalletName': identifier not found
+D:\git\Monthly_Expenses_Program\Monthly_Expenses\functions.cpp(178,45): error C3861: 'filterByWalletType': identifier not found
+D:\git\Monthly_Expenses_Program\Monthly_Expenses\functions.cpp(204,41): error C3861: 'filterByWalletName': identifier not found
+D:\git\Monthly_Expenses_Program\Monthly_Expenses\functions.cpp(216,41): error C3861: 'filterByWalletType': identifier not found

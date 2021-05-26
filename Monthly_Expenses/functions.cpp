@@ -101,61 +101,92 @@ void view_expenses()
 
             case 2:
             {
-                string filter_date;
-                bool found = false;
-                cout << "Enter the Date you want to filter with(dd/mm/yy): ";
-                cin >> filter_date;
-                for (int i = 0; i < ex.size(); i++) {
-                    if (ex[i].date == filter_date)
-                    {
-                        ex[i].display();
-                        found = true;
-                    }
+                vector<expenses> filtered_expenses;
+                filtered_expenses = filterByDate(ex);
+                if (filtered_expenses.empty())
+                    cout << "No Data Has been Found.\n";
+                else
+                {
+                    for (int i = 0; i < filtered_expenses.size(); i++)
+                        filtered_expenses[i].display();
                 }
-                if (!found)
-                    cout << "No data has been found.\n";
                 break;
             }
 
             case 3:
             {
-                bool found = false;
-                string filter_category;
-                cout << "Enter the Category you want to filter with: ";
-                cin >> filter_category;
-                for (int i = 0; i < ex.size(); i++) {
-                    if (ex[i].category == filter_category)
-                    {
-                        ex[i].display();
-                        found = true;
-                    }
+                vector<expenses> filtered_expenses;
+                filtered_expenses = filterByCategory(ex);
+                if (filtered_expenses.empty())
+                    cout << "No Data Has been Found.\n";
+                else
+                {
+                    for (int i = 0; i < filtered_expenses.size(); i++)
+                        filtered_expenses[i].display();
                 }
-                if (!found)
-                    cout << "No data has been found.\n";
                 break;
             }
 
             case 4:
             {
-                bool found;
-                double filter_amount;
-                cout << "Enter the amount you want to filter with: ";
-                cin >> filter_amount;
-                for (int i = 0; i < ex.size(); i++) {
-                    if (ex[i].cost == filter_amount)
-                    { 
-                        ex[i].display();
-                        found = true;
-                    }
+                vector<expenses> filtered_expenses;
+                filtered_expenses = filterByAmount(ex);
+                if (filtered_expenses.empty())
+                    cout << "No Data Has been Found.\n";
+                else
+                {
+                    for (int i = 0; i < filtered_expenses.size(); i++)
+                        filtered_expenses[i].display();
                 }
-                if (!found)
-                    cout << "No data has been found.\n";
                 break;
             }
 
             case 5:
             {
-                //ToDo
+                int filters;
+                vector <expenses> filtered_expenses;
+
+                cout << "How many filter do you want to apply: "; cin >> filters; //geting the number of filters he wants to use
+                int* arr = new int[filters];                                    
+
+                cout << "Choose the filters:\n1.Date.\n2.Category.\n3.cost.\n4.wallet Name.\n5.wallet Type";
+                for (int i = 0; i < filters; i++)
+                    cin >> arr[i];                                      //choosing the filters and putting it's number in dynamic array
+
+                for (int i = 0; i < ex.size(); i++)        //copying the orignal expenses vector into another one to be able to mainpulte with it
+                    filtered_expenses.push_back(ex[i]);
+
+                for (int i = 0; i < filters; i++) {         //according to each filter selected we use it's function
+                    if (arr[i] == 1)
+
+                        filtered_expenses = filterByDate(filtered_expenses);
+                        
+                    else if (arr[i] == 2)
+                    
+                        filtered_expenses = filterByCategory(filtered_expenses);
+                    
+                    else if (arr[i] == 3)
+                    
+                        filtered_expenses = filterByAmount(filtered_expenses);
+                    
+                    else if (arr[i] == 4)
+                    
+                        filtered_expenses = filterByWalletName(filtered_expenses);
+                    
+                    else if (arr[i] == 5)
+                    
+                        filtered_expenses = filterByWalletType(filtered_expenses);
+                    
+                }
+                if (filtered_expenses.empty())
+                {
+                    cout << "No Data Has been found\n";
+                }
+                else
+                {
+                    for (int i = 0; i < filtered_expenses.size(); i++)
+                        filtered_expenses[i].display();
+                }
 
 
                 break;
@@ -169,39 +200,27 @@ void view_expenses()
 
                 if (wallet_choice == 1)
                 {
-                    string wallet_name;
-
-                    cout << "Enter the Wallet Name: ";
-                    cin >> wallet_name;
-
-                    for (int i = 0; i < ex.size(); i++) {
-                        if (wallet_name == ex[i].Wallet.name)
-                        {
-                            ex[i].display();
-                            found = true;
-                        }
+                    vector<expenses> filtered_expenses;
+                    filtered_expenses = filterByWalletName(ex);
+                    if (filtered_expenses.empty())
+                        cout << "No Data Has been Found.\n";
+                    else
+                    {
+                        for (int i = 0; i < filtered_expenses.size(); i++)
+                            filtered_expenses[i].display();
                     }
-                    if (!found)
-                        cout << "No data has been found.\n";
-                    break;
                 }
                 else if (wallet_choice == 2)
                 {
-                    string wallet_type;
-
-                    cout << "Enter the Wallet Type: ";
-                    cin >> wallet_type;
-
-                    for (int i = 0; i < ex.size(); i++) {
-                        if (wallet_type == ex[i].Wallet.type)
-                        {
-                            ex[i].display();
-                            found = true;
-                        }
+                    vector<expenses> filtered_expenses;
+                    filtered_expenses = filterByWalletType(ex);
+                    if (filtered_expenses.empty())
+                        cout << "No Data Has been Found.\n";
+                    else
+                    {
+                        for (int i = 0; i < filtered_expenses.size(); i++)
+                            filtered_expenses[i].display();
                     }
-                    if (!found)
-                        cout << "No data has been found.\n";
-                    break;
                 }
                 else
                     cout << "Invlaid Choice\n";
@@ -232,4 +251,60 @@ void view_money()
     else
         cout << "You Have " << w[wallet_choice-1].money << " Left in this Wallet\n";
 
+}
+
+vector <expenses> filterByDate(vector<expenses> ex) {
+    string filter_date;
+    vector <expenses> filtered_vector;
+    cout << "Enter the Date you want to filter with(dd/mm/yy): ";
+    cin >> filter_date;
+    for (int i = 0; i < ex.size(); i++) {
+        if (ex[i].date == filter_date)
+            filtered_vector.push_back(ex[i]);
+    }
+    return filtered_vector;
+}
+vector <expenses> filterByCategory(vector<expenses> ex) {
+    string filter_Category;
+    vector <expenses> filtered_vector;
+    cout << "Enter the Category you want to filter with: ";
+    cin >> filter_Category;
+    for (int i = 0; i < ex.size(); i++) {
+        if (ex[i].category == filter_Category)
+            filtered_vector.push_back(ex[i]);
+    }
+    return filtered_vector;
+}
+vector <expenses> filterByAmount(vector<expenses> ex) {
+    double filter_amount;
+    vector <expenses> filtered_vector;
+    cout << "Enter the amount you want to filter with: ";
+    cin >> filter_amount;
+    for (int i = 0; i < ex.size(); i++) {
+        if (ex[i].cost == filter_amount)
+            filtered_vector.push_back(ex[i]);
+    }
+    return filtered_vector;
+}
+vector <expenses> filterByWalletName(vector<expenses> ex) {
+    string wallet_Name;
+    vector <expenses> filtered_vector;
+    cout << "Enter the wallet name: ";
+    cin >> wallet_Name;
+    for (int i = 0; i < ex.size(); i++) {
+        if (ex[i].Wallet.name == wallet_Name)
+            filtered_vector.push_back(ex[i]);
+    }
+    return filtered_vector;
+}
+vector <expenses> filterByWalletType(vector<expenses> ex) {
+    string wallet_Type;
+    vector <expenses> filtered_vector;
+    cout << "Enter the wallet type: ";
+    cin >> wallet_Type;
+    for (int i = 0; i < ex.size(); i++) {
+        if (ex[i].Wallet.type == wallet_Type)
+            filtered_vector.push_back(ex[i]);
+    }
+    return filtered_vector;
 }
