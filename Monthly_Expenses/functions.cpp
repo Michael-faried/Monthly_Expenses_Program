@@ -1,5 +1,7 @@
 #include <iostream>
+#include<fstream>
 #include <vector>
+#include<sstream>
 #include "classes.cpp"
 using namespace std;
 
@@ -64,7 +66,7 @@ vector <expenses> filterByWalletType(vector<expenses> ex) {
 
 int choose_wallet()
 {
-    wallet w1("Default", "Cash", 1000);
+    wallet w1;
     w.push_back(w1);
     int choice;
     while (true)
@@ -85,8 +87,12 @@ int choose_wallet()
                 }
                 cout << "Press 0 to Return\n";
                 cout << "Your Choice: ";        cin >> wallet_choice;
-                if(wallet_choice == 0){}
-                else if(wallet_choice < 0 || wallet_choice >w.size()){
+                if(wallet_choice == 0)
+                {
+                    continue;
+                }
+                else if(wallet_choice < 0 || wallet_choice >w.size())
+                {
                     cout << "Invalid Choice\n";
                 }
                 else
@@ -102,6 +108,16 @@ int choose_wallet()
         }
         else
             cout << "Invalid Choice\n";
+            cout<<"----------------------------------"<<endl;
+            cout<<"Press 1 to continue or 0 to return"<<endl;
+            cout<<"----------------------------------"<<endl;
+            cin>>choice;
+            if(choice == 1)
+               continue;
+            else if(choice == 0)
+               break;
+            
+            
     }
 }
 
@@ -122,8 +138,10 @@ void daily_expenses(int wal_ind)
     expenses e1(Category, Date, Cost, Wallet);
     if(Wallet.money - e1.cost < 0)
         cout << "There is No Enough Money Left\n";
-    else {
+    else 
+    {
         Wallet.money -= e1.cost;
+        //w[wal_ind].money -= e1.cost;
         ex.push_back(e1);
     }
 }
@@ -319,3 +337,56 @@ void view_money()
 
 }
 
+
+void saveDate()
+{ 
+  ofstream Data("Monthly Expenses.txt",ios::app);
+  fstream ReadData("Read.txt",ios::in|ios::out|ios::app);
+  string line ;
+  double total_cost = 0.0;
+  double total_money = 0.0 ;
+  double c = 0.0;
+  
+  Data<<"----------------------------------------------------"<<endl;
+  Data<<"|             Data oF Monthly Expenses             |"<<endl;
+  Data<<"----------------------------------------------------"<<endl;
+  for(int i = 0 ;i<ex.size(); i++)
+  { 
+    
+    Data<<"You spent " << ex[i].cost << " in " << ex[i].category << " on " << ex[i].date << endl;
+    total_cost+=ex[i].cost;
+
+  }
+
+    ReadData<<total_cost<<endl;
+    ReadData.seekg(0,ios::beg);
+    while(!ReadData.eof())
+    {
+      getline(ReadData,line);
+      for(int i = 0 ;i<line.length();i++)
+        c = c *10 +(line[i]-'0');
+        total_money+=c;
+        c = 0.0; 
+    }
+
+    Data<<endl;
+    Data<<"---------------------------------------------------"<<endl;
+    Data<<"|               Data oF Wallets                   |"<<endl;
+    Data<<"---------------------------------------------------"<<endl; 
+
+  for(int i = 0 ;i<w.size(); i++)
+  { 
+    Data<<"--------------------------------------"<<endl;
+    Data<<w[i].name<<" of Type "<<w[i].type<<" Contains "<< w[i].money-total_money<<" Dollars"<<endl;;
+    Data<<"---------------------------------------"<<endl;
+  }
+  
+
+   Data<<"------------------------------------------------------------------------------------------"<<endl;
+
+
+  Data.close();
+  ReadData.close();
+
+
+}

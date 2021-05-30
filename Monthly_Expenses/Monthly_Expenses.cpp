@@ -1,10 +1,13 @@
 #include <iostream>
+#include<fstream>
 #include "functions.cpp"
 #include "classes.cpp"
 using namespace std;
 
 int main()
-{
+{   
+   
+
     cout << "$$$ Welcome to Monthly Expense Program $$$\n";
     cout << "------------------------------------------\n";
     int Wallet_Index = choose_wallet();
@@ -21,7 +24,7 @@ int main()
         cout << "Your Choice: ";     cin >> choice;
 
         switch (choice)
-        {
+    {
         case 1:
         {
             monthly_income(Wallet_Index);
@@ -47,7 +50,8 @@ int main()
         }
 
         case 5:
-        {
+        {   
+            saveDate();
             cout << "Your data has been saved, Goodbye\n";
             return 0;
         }
@@ -55,8 +59,9 @@ int main()
         {
             cout << "Invalid Choice\n";
         }
-        }
+        
     }
+  }
 
     return 0;
 }
