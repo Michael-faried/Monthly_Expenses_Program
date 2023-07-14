@@ -1,2 +1,2 @@
 # Monthly_Expenses_Program
-Data Structure Year 2 Semester 2 Project
+# Data Structure 2nd Year Second Semester Project
